@@ -1,14 +1,17 @@
-function getLottoRad(luckyNumber = null) {
+function getLottoRad(luckyNumbers = null) {
     var numbers = [];
     var antal = 7;
     /* 
-    Ifall vi skickar med ett turnummer som argument, 
-    så behöver vi inte slumpa fram 7 nummer, utan bara 6. 
+    Ifall vi skickar med ett eller flera turnummer som argument, 
+    så behöver vi inte slumpa fram 7 nummer, utan färre. 
     Därför har vi variabeln antal. 
     */
-    if (luckyNumber != null) {
-        antal = 6;
-        numbers.push(luckyNumber);
+    if (luckyNumbers != null) {
+        antal = 7 - luckyNumbers.length;
+        /*
+        Använd spread-operatorn för att kopiera en array till en annan.
+        */
+        numbers = [...luckyNumbers];
     }
     for (i = 0; i < antal; i++) {
         let slump = Math.ceil(Math.random() * 35);
@@ -25,6 +28,7 @@ function getLottoRad(luckyNumber = null) {
     return numbers;
 }
 
-// Anrop med turnummer som argument
-var lottorad = getLottoRad(12);
+// Anrop med flera turnummer som argument
+var turnummer = [3, 12, 33];
+var lottorad = getLottoRad(turnummer);
 console.log(lottorad);
