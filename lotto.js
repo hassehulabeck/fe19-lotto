@@ -13,11 +13,10 @@ function getLottoRad(luckyNumbers = null) {
         */
         numbers = [...luckyNumbers];
     }
-    for (i = 0; i < antal; i++) {
+    while (numbers.length < 7) {
         let slump = Math.ceil(Math.random() * 35);
-        if (numbers.includes(slump)) {
-            i--; // Manuellt minska iteratorn i för att en iteration har "gått förlorad", då vi slumpade fram ett tal som redan fanns.
-        } else {
+
+        if (!numbers.includes(slump)) {
             numbers.push(slump);
         }
     }
