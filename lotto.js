@@ -44,6 +44,17 @@ function getLottoRad(luckyNumbers = null, unluckyNumbers = null) {
     return numbers;
 }
 
+function check(correctNumbers) {
+    var count = 0;
+    // Loopa igenom den rätta raden, och kolla om det återfinns i lottorad.
+    correctNumbers.forEach(function (nummer) {
+        if (lottorad.includes(nummer)) {
+            count++;
+        }
+    });
+    return count;
+}
+
 // Anrop med flera turnummer som argument
 // Samt olycksnummer som vi inte vill ha med.
 var luckyNumbers = [3, 12, 33];
@@ -55,3 +66,7 @@ try {
     // För att se hur felhanteringen fungerar, ändra typ på lucky- eller unluckyNumbers.
     console.error(err.message);
 }
+
+// Kolla hur många rätt det blev.
+var correctNumbers = [2, 14, 9, 11, 24, 1, 29];
+console.log(check(correctNumbers));
