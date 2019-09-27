@@ -1,4 +1,4 @@
-function getLottoRad(luckyNumbers = null) {
+function getLottoRad(luckyNumbers = null, unluckyNumbers = null) {
     var numbers = [];
     var antal = 7;
     /* 
@@ -16,9 +16,14 @@ function getLottoRad(luckyNumbers = null) {
     while (numbers.length < 7) {
         let slump = Math.ceil(Math.random() * 35);
 
-        if (!numbers.includes(slump)) {
-            numbers.push(slump);
+        if (unluckyNumbers != null) {
+            if (!unluckyNumbers.includes(slump)) {
+                if (!numbers.includes(slump)) {
+                    numbers.push(slump);
+                }
+            }
         }
+
     }
     // Sortera arrayen för bättre läsbarhet.
     numbers.sort(function (a, b) {
@@ -28,6 +33,8 @@ function getLottoRad(luckyNumbers = null) {
 }
 
 // Anrop med flera turnummer som argument
-var turnummer = [3, 12, 33];
-var lottorad = getLottoRad(turnummer);
+// Samt olycksnummer som vi inte vill ha med.
+var luckyNumbers = [3, 12, 33];
+var unluckyNumbers = [7];
+var lottorad = getLottoRad(luckyNumbers, unluckyNumbers);
 console.log(lottorad);
